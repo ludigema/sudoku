@@ -1,5 +1,8 @@
+from sudoku import Sudoku
+
 def play():
-	pass
+	s = Sudoku(25)
+	print(s)
 
 def playWithIA():
 	pass
