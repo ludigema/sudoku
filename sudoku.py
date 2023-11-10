@@ -35,6 +35,34 @@ class Sudoku:
 			if i != lg and i[col] == val:
 				return False
 		# carré
+		if lg < 3:
+			if col < 3:
+				return self.checkSquare(0,0,val,lg,col)
+			elif col < 6:
+				return self.checkSquare(0,3,val,lg,col)
+			else:
+				return self.checkSquare(0,6,val,lg,col)
+		elif lg < 6:
+			if col < 3:
+				return self.checkSquare(3,0,val,lg,col)
+			elif col < 6:
+				return self.checkSquare(3,0,val,lg,col)
+			else:
+				return self.checkSquare(3,0,val,lg,col)
+		else:
+			if col < 3:
+				return self.checkSquare(6,0,val,lg,col)
+			elif col < 6:
+				return self.checkSquare(6,0,val,lg,col)
+			else:
+				return self.checkSquare(6,0,val,lg,col)
+		return True
+
+	def checkSquare(self,lg,col, val, valLg, valCol):
+		for i in range(3):
+			for j in range(3):
+				if self.grille[lg+i][col+i] == val and lg+i != valLg and col+1 != valCol:
+					return False
 		return True
 
 
