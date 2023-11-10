@@ -19,8 +19,23 @@ class Sudoku:
 				if self.grille[lg][col] == -1:
 					case = True
 			# on place un chiffre au pif dans cette case
-			c = random.randint(0, 9)
-			self.grille[lg][col] = c
+			# en checkant possible ligne et colonne
+			val = random.randint(0, 9)
+			while  not self.checkChiffrePossible(val, col, lg):
+				val = random.randint(0, 9)
+			self.grille[lg][col] = val
+
+	def checkChiffrePossible(self, val, col, lg):
+		# ligne
+		for i in self.grille[lg]:
+			if i != col and self.grille[lg][i] == val:
+				return False
+		# colonne
+		for i in self.grille:
+			if i != lg and i[col] == val:
+				return False
+		# carré
+		return True
 
 
 	def __str__(self):
