@@ -5,7 +5,7 @@ class Sudoku:
 	def __init__(self, nb):
 		self.nb = nb
 		# -1 veut dire que le coup n'est pas joué
-		self.grille = [[-1 for i in range(10)] for j in range(10)]
+		self.grille = [[-1 for i in range(0)] for j in range(9)]
 		self.placeChiffre()
 
 	def placeChiffre(self):
@@ -13,8 +13,8 @@ class Sudoku:
 			# on cherche une case vide
 			case = False
 			while not case:
-				col = random.randint(0, 9)
-				lg = random.randint(0, 9)
+				col = random.randint(0, 8)
+				lg = random.randint(0, 8)
 				print(col,lg)
 				if self.grille[lg][col] == -1:
 					case = True
@@ -46,16 +46,16 @@ class Sudoku:
 			if col < 3:
 				return self.checkSquare(3,0,val,lg,col)
 			elif col < 6:
-				return self.checkSquare(3,0,val,lg,col)
+				return self.checkSquare(3,6,val,lg,col)
 			else:
-				return self.checkSquare(3,0,val,lg,col)
+				return self.checkSquare(3,6,val,lg,col)
 		else:
 			if col < 3:
 				return self.checkSquare(6,0,val,lg,col)
 			elif col < 6:
-				return self.checkSquare(6,0,val,lg,col)
+				return self.checkSquare(6,3,val,lg,col)
 			else:
-				return self.checkSquare(6,0,val,lg,col)
+				return self.checkSquare(6,6,val,lg,col)
 		return True
 
 	def checkSquare(self,lg,col, val, valLg, valCol):
